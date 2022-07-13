@@ -71,7 +71,7 @@ const Rating = ({ value, text, color }) => {
 
 Rating.defaultProps = {
   color: '#f8e825',
-};
+}; //if we want a default color in case it's not passed
 
 Rating.propTypes = {
   value: PropTypes.number.isRequired,
