@@ -1,15 +1,24 @@
 main {
-  min-height: 80vh;
+  min-height: 60vh;
 }
 
 h3 {
   padding: 1rem 0;
 }
 
-.ml-auto {
+/* .ml-auto {
   margin-left: auto;
-} /*not sure why the bs class doesn't work*/
+}  */
+/* not sure why the bs class doesn't work */
 
 .rating span {
   margin: 0.1rem;
+}
+/* .product-screen {
+  height: 60vh;
+} */
+
+.navbar {
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
