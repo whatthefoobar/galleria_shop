@@ -1,6 +1,6 @@
 const products = [
   {
-    _id: '1',
+    // _id: '1', as mongoDB adds its own when we seed this
     name: 'Vintage brown boots',
     image: '/images/1.jpg',
     description: 'Versatile, sturdy and comfy, what more can you ask for?',
@@ -12,7 +12,6 @@ const products = [
     numReviews: 3,
   },
   {
-    _id: '2',
     name: 'Diesel Sneakers',
     image: '/images/2.jpg',
     description: 'Flashy and always ready to make an impression.',
@@ -36,7 +35,6 @@ const products = [
     numReviews: 2,
   },
   {
-    _id: '4',
     name: 'Doc Martens boots',
     image: '/images/4.jpg',
     description:
@@ -49,7 +47,6 @@ const products = [
     numReviews: 4,
   },
   {
-    _id: '5',
     name: 'Nike sneakers',
     image: '/images/5.jpg',
     description: 'A pair of timeless white sneakers you will wear for years.',
@@ -61,7 +58,6 @@ const products = [
     numReviews: 4,
   },
   {
-    _id: '6',
     name: 'Lemon slip-ins',
     image: '/images/6.jpg',
     description:
@@ -74,7 +70,6 @@ const products = [
     numReviews: 4,
   },
   {
-    _id: '7',
     name: 'Hot pink pumps',
     image: '/images/7.jpg',
     description:
@@ -87,7 +82,6 @@ const products = [
     numReviews: 4,
   },
   {
-    _id: '8',
     name: 'Strappy block heel sandals',
     image: '/images/8.jpg',
     description:
