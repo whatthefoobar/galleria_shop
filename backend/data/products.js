@@ -23,7 +23,6 @@ const products = [
     numReviews: 3,
   },
   {
-    _id: '3',
     name: 'Colourful sneakers',
     image: '/images/3.jpg',
     description: 'Colourful flashy sneakers.',

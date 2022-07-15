@@ -55,3 +55,7 @@ if (process.argv[2] === '-d') {
 } else {
   importData();
 }
+
+// use seeder: node backend/seeder
+//or to detroy : node backend/seeder -d
+// added scripts in package.json for the above
