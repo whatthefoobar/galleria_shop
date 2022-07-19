@@ -22,3 +22,7 @@ h3 {
   padding-top: 15px;
   padding-bottom: 15px;
 }
+
+.selectForm {
+  padding: 0.75rem 0.2rem;
+}
