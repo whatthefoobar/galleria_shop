@@ -16,7 +16,7 @@ import Loader from '../components/Loader';
 import { listProductDetails } from '../actions/productActions';
 
 const ProductScreen = () => {
-  const [quantity, setQuantity] = useState(1);
+  const [qty, setQty] = useState(1);
   const dispatch = useDispatch();
   const { id } = useParams();
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ const ProductScreen = () => {
   }, [dispatch, id]);
 
   const addToCartHandler = () => {
-    navigate(`/cart/${id}?qty=${quantity}`);
+    navigate(`/cart/${id}?qty=${qty}`);
   };
 
   return (
@@ -92,8 +92,8 @@ const ProductScreen = () => {
                         <Form.Control
                           className="selectForm"
                           as="select"
-                          value={quantity}
-                          onChange={(e) => setQuantity(e.target.value)}
+                          value={qty}
+                          onChange={(e) => setQty(e.target.value)}
                         >
                           {[...Array(product.countInStock).keys()].map((x) => (
                             <option key={x + 1} value={x + 1}>
