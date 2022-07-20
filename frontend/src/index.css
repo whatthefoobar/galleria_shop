@@ -1,6 +1,13 @@
 main {
   min-height: 60vh;
 }
+a:link,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+}
+
 h1 {
   font-size: 1.8rem;
   padding: 1rem 0;
