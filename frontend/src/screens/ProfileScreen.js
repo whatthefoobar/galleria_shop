@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { getUserDetails, updateUserProfile } from '../actions/userActions';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
+import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants';
 
 const ProfileScreen = () => {
   const [name, setName] = useState('');
@@ -29,14 +30,15 @@ const ProfileScreen = () => {
     if (!userInfo) {
       navigate('/login');
     } else {
-      if (!user || !user.name) {
+      if (!user || !user.name || success) {
+        dispatch({ type: USER_UPDATE_PROFILE_RESET });
         dispatch(getUserDetails('profile')); //the id we pass to our action for now represent the complete route as    ```js userRoutes.route('/profile')``` so the purpose of the profile we passed to it will make the complete route to get the user profile.
       } else {
         setName(user.name);
         setEmail(user.email);
       }
     }
-  }, [dispatch, navigate, user, userInfo]);
+  }, [dispatch, navigate, user, userInfo, success]);
 
   const submitHandler = (e) => {
     e.preventDefault();
