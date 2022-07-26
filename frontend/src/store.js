@@ -31,8 +31,15 @@ const userInfoFromStorage = localStorage.getItem('userInfo')
   ? JSON.parse(localStorage.getItem('userInfo'))
   : null;
 
+const shippingAddressFromStorage = localStorage.getItem('shippingAddress') // if any shipping address in localStorage we will use that
+  ? JSON.parse(localStorage.getItem('shippingAddress'))
+  : {};
+
 const initialState = {
-  cart: { cartItems: cartItemsFromStorage },
+  cart: {
+    cartItems: cartItemsFromStorage,
+    shippingAddress: shippingAddressFromStorage, // use this in shipping screen
+  },
   userLogin: { userInfo: userInfoFromStorage },
 }; // we put cart items previously saved in localStorage see cartActions.js in pur state
 
