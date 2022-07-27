@@ -7,6 +7,7 @@ import CheckoutSteps from '../components/CheckoutSteps';
 
 const PlaceOrderScreen = () => {
   const cart = useSelector((state) => state.cart);
+  const { shippingAddress, paymentMethod, cartItems } = cart;
 
   //   Calculate prices
   const addDecimals = (num) => {
@@ -16,7 +17,7 @@ const PlaceOrderScreen = () => {
   cart.itemsPrice = addDecimals(
     cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
   );
-  cart.shippingPrice = addDecimals(cart.itemsPrice > 100 ? 0 : 100);
+  cart.shippingPrice = addDecimals(cart.itemsPrice > 100 ? 0 : 40);
   cart.taxPrice = addDecimals(Number((0.15 * cart.itemsPrice).toFixed(2)));
   cart.totalPrice = (
     Number(cart.itemsPrice) +
@@ -31,6 +32,7 @@ const PlaceOrderScreen = () => {
   return (
     <>
       <CheckoutSteps step1 step2 step3 step4 />
+
       <Row>
         <Col md={8}>
           <ListGroup variant="flush">
@@ -38,16 +40,15 @@ const PlaceOrderScreen = () => {
               <h2>Shipping</h2>
               <p>
                 <strong>Address:</strong>
-                {cart.shippingAddress.address}, {cart.shippingAddress.city}{' '}
-                {cart.shippingAddress.postalCode},{' '}
-                {cart.shippingAddress.country}
+                {shippingAddress.address}, {shippingAddress.city}{' '}
+                {shippingAddress.postalCode}, {shippingAddress.country}
               </p>
             </ListGroup.Item>
 
             <ListGroup.Item>
               <h2>Payment Method</h2>
               <strong>Method: </strong>
-              {cart.paymentMethod}
+              {paymentMethod}
             </ListGroup.Item>
 
             <ListGroup.Item>
@@ -56,10 +57,10 @@ const PlaceOrderScreen = () => {
                 <Message>Your cart is empty</Message>
               ) : (
                 <ListGroup variant="flush">
-                  {cart.cartItems.map((item, index) => (
-                    <ListGroup.Item key={index}>
+                  {cartItems.map((item, index) => (
+                    <ListGroup.Item key={item.product}>
                       <Row>
-                        <Col md={1}>
+                        <Col md={2}>
                           <Image
                             src={item.image}
                             alt={item.name}

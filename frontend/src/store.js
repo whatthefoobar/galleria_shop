@@ -39,6 +39,9 @@ const initialState = {
   cart: {
     cartItems: cartItemsFromStorage,
     shippingAddress: shippingAddressFromStorage, // use this in shipping screen
+    paymentMethod: localStorage.getItem('paymentMethod')
+      ? JSON.parse(localStorage.getItem('paymentMethod'))
+      : '', // to fix bug when we refresh and paypal disapears from our PlaceOrderScreen paymentMethod
   },
   userLogin: { userInfo: userInfoFromStorage },
 }; // we put cart items previously saved in localStorage see cartActions.js in pur state
