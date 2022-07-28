@@ -38,7 +38,6 @@ const ProfileScreen = () => {
         setEmail(user.email);
       }
     }
-    console.log(success);
   }, [dispatch, navigate, user, userInfo, success]);
   const submitHandler = (e) => {
     e.preventDefault();
