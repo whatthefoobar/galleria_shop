@@ -7,6 +7,7 @@ import CheckoutSteps from '../components/CheckoutSteps';
 import { createOrder } from '../actions/orderActions';
 import { ORDER_CREATE_RESET } from '../constants/orderConstants';
 import { USER_DETAILS_RESET } from '../constants/userConstants';
+import { CART_CLEAR_ITEMS } from '../constants/cartConstants';
 
 const PlaceOrderScreen = () => {
   const navigate = useNavigate();
@@ -41,6 +42,7 @@ const PlaceOrderScreen = () => {
       dispatch({ type: USER_DETAILS_RESET });
       dispatch({ type: ORDER_CREATE_RESET });
       navigate(`/order/${order._id}`);
+      dispatch({ type: CART_CLEAR_ITEMS });
     }
     // eslint-disable-next-line
   }, [navigate, success]);
