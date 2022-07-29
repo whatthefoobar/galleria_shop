@@ -21,7 +21,7 @@ const ProductScreen = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const productDetails = useSelector((state) => state.productDetails);
+  const productDetails = useSelector((state) => state.productDetails); // see ProductReducer to see how the obj would look
   const { loading, error, product } = productDetails;
 
   useEffect(() => {

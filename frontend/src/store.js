@@ -1,4 +1,8 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import {
+  legacy_createStore as createStore,
+  combineReducers,
+  applyMiddleware,
+} from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import {
@@ -54,7 +58,7 @@ const initialState = {
       : '', // to fix bug when we refresh and paypal disapears from our PlaceOrderScreen paymentMethod
   },
   userLogin: { userInfo: userInfoFromStorage },
-}; // we put cart items previously saved in localStorage see cartActions.js in pur state
+}; // we put cart items previously saved in localStorage see cartActions.js in our state
 
 const middleware = [thunk];
 

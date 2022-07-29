@@ -11,7 +11,6 @@ const Header = () => {
 
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
-  console.log(cartItems);
 
   const logoutHandler = () => {
     dispatch(logout());
@@ -22,7 +21,7 @@ const Header = () => {
       <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
         <Container>
           <LinkContainer to="/">
-            <Navbar.Brand>Shoes</Navbar.Brand>
+            <Navbar.Brand>Galleria</Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
