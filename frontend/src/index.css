@@ -21,7 +21,17 @@ h2 {
 h3 {
   padding: 1rem 0;
 }
-
+/* fix cart styling icon to match BS theme */
+.fz-lg {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.55);
+}
+/* fix cart styling to match BS theme */
+.badge {
+  font-size: 1em;
+  color: rgba(255, 255, 255, 0.55);
+  padding: 0.35em;
+}
 .form-label {
   margin-bottom: 0.75rem;
   margin-top: 0.5rem;

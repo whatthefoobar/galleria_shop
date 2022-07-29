@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
-import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav, Container, NavDropdown, Badge } from 'react-bootstrap';
 import { logout } from '../actions/userActions';
 
 const Header = () => {
@@ -8,6 +8,10 @@ const Header = () => {
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+
+  const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
+  console.log(cartItems);
 
   const logoutHandler = () => {
     dispatch(logout());
@@ -27,7 +31,10 @@ const Header = () => {
               {/*this pushes it to the right as ml-auto didn't work */}
               <LinkContainer to="/cart">
                 <Nav.Link>
-                  <i className="fas fa-shopping-cart"></i> Cart
+                  <i className="fas fa-shopping-cart fz-lg"></i>
+                  <Badge pill bg="transparent">
+                    {cartItems.reduce((a, c) => a + c.qty, 0)}
+                  </Badge>
                 </Nav.Link>
               </LinkContainer>
               {userInfo ? (
