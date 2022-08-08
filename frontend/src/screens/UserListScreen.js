@@ -4,7 +4,7 @@ import { Table, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
-import { listUsers } from '../actions/userActions';
+import { listUsers, deleteUser } from '../actions/userActions';
 import { useNavigate } from 'react-router-dom';
 
 const UserListScreen = () => {
@@ -13,7 +13,11 @@ const UserListScreen = () => {
 
   const userList = useSelector((state) => state.userList);
   const { loading, error, users } = userList;
+
   const { userInfo } = useSelector((state) => state.userLogin);
+
+  const userDelete = useSelector((state) => state.userDelete);
+  const { success: successDelete } = userDelete;
 
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
@@ -21,10 +25,12 @@ const UserListScreen = () => {
     } else {
       navigate('/login');
     }
-  }, [dispatch, navigate, userInfo]);
+  }, [dispatch, navigate, userInfo, successDelete]); // if success refetch the lsit
 
   const deleteHandler = (id) => {
-    console.log('delete');
+    if (window.confirm('Are you sure')) {
+      dispatch(deleteUser(id));
+    }
   };
 
   return (
@@ -69,6 +75,7 @@ const UserListScreen = () => {
                   <Button
                     variant="danger"
                     className="btn-sm"
+                    disabled={userInfo._id === user._id}
                     onClick={() => deleteHandler(user._id)}
                   >
                     <i className="fas fa-trash"></i>
