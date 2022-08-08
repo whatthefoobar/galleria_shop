@@ -1,3 +1,11 @@
+Quick preview of my progress so far(UI is subject to changes):
+
+![prev1](https://user-images.githubusercontent.com/69626975/183281608-e1a92d26-6462-4bfb-8a05-6678212f8fb3.PNG)
+
+
+![prev2](https://user-images.githubusercontent.com/69626975/183281653-c0d58131-80ab-4f10-a9d5-5e9840c4ac1e.PNG)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
