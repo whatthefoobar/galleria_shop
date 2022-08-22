@@ -2,6 +2,7 @@ import path from 'path';
 import express from 'express';
 import dotenv from 'dotenv';
 import colors from 'colors';
+import morgan from 'morgan'; // for loging in user requests ex.:  GET /api/products 304 27.865 ms - -
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 import connectDB from './config/db.js';
 import productRoutes from './routes/productRoutes.js';
@@ -14,6 +15,11 @@ dotenv.config();
 connectDB();
 
 const app = express();
+
+if (process.env.NODE_ENV === 'development') {
+  // mw for morgan that runs only in production
+  app.use(morgan('dev'));
+}
 
 app.use(express.json()); // allows us to accept json data in the body
 
