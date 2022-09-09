@@ -15,7 +15,11 @@ const SearchBox = () => {
     }
   };
   return (
-    <Form onSubmit={submitHandler} inline className="d-flex mt-3 mt-lg-0">
+    <Form
+      onSubmit={submitHandler}
+      inline="true"
+      className="d-flex mt-3 mt-lg-0"
+    >
       <Form.Control
         type="text"
         name="q"

@@ -10,6 +10,7 @@ import {
   Button,
   Form,
 } from 'react-bootstrap';
+import Meta from '../components/Meta';
 import Rating from '../components/Rating';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
@@ -73,6 +74,7 @@ const ProductScreen = () => {
         <Message variant="danger">{error}</Message>
       ) : (
         <>
+          <Meta title={product.name} />
           <Row>
             <Col md={6}>
               <Image src={product?.image} alt={product?.name} fluid />
@@ -90,7 +92,7 @@ const ProductScreen = () => {
                 </ListGroup.Item>
                 <ListGroup.Item>Price: ${product?.price}</ListGroup.Item>
                 <ListGroup.Item>
-                  Description: ${product?.description}
+                  Description: {product?.description}
                 </ListGroup.Item>
               </ListGroup>
             </Col>
