@@ -36,7 +36,7 @@ app.get('/api/config/paypal', (req, res) =>
   res.send(process.env.PAYPAL_CLIENT_ID)
 );
 
-// for deployment w heroku create a build to serve on heroku
+// for deployment w heroku create a build to serve on heroku just change in .env development to production
 const __dirname = path.resolve();
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 
