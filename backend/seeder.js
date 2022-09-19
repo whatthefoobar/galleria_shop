@@ -59,3 +59,4 @@ if (process.argv[2] === '-d') {
 // use seeder: node backend/seeder
 //or to detroy : node backend/seeder -d
 // added scripts in package.json for the above
+// oops added Node ev´nv variabl as development in heroku, try to deploy again now
