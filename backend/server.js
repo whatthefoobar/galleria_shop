@@ -23,9 +23,9 @@ if (process.env.NODE_ENV === 'development') {
 
 app.use(express.json()); // allows us to accept json data in the body
 
-app.get('/', (req, res) => {
-  res.send('API is running...');
-});
+// app.get('/', (req, res) => {
+//   res.send('API is running...');
+// });
 
 app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
