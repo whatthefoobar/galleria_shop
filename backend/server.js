@@ -16,10 +16,10 @@ connectDB();
 
 const app = express();
 
-if (process.env.NODE_ENV === 'development') {
-  // mw for morgan that runs only in production
-  app.use(morgan('dev'));
-}
+// if (process.env.NODE_ENV === 'development') {
+//   // mw for morgan that runs only in production
+//   app.use(morgan('dev'));
+// }
 
 app.use(express.json()); // allows us to accept json data in the body
 
