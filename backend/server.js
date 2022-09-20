@@ -25,7 +25,7 @@ app.use(express.json()); // allows us to accept json data in the body
 
 // app.get('/', (req, res) => {
 //   res.send('API is running...');
-// });
+// }); this was the culprit of my blank  'API is running...' deployed page
 
 app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
@@ -63,4 +63,3 @@ app.listen(
     `Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold
   )
 );
-// oops added Node env variable as development in heroku, try to deploy again now 4
