@@ -1,4 +1,4 @@
-Note to self: Heroku free tier is dead, need to deploy app 's backend through RENDER. 
+TO DO: redeploy on Render.
 
 Quick preview of my progress so far(UI is subject to changes):
 
