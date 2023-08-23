@@ -1,3 +1,4 @@
+Updated: changed state management to redux-toolkit, jwt is not stored in localHost anymore but stored in an HTTP-Only cookie (no security leaks)
 TO DO: redeploy on Render.
 
 Quick preview of my progress so far(UI is subject to changes):
