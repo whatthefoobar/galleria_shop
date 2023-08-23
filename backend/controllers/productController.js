@@ -1,13 +1,11 @@
-import asyncHandler from 'express-async-handler';
+import asyncHandler from '../middleware/asyncHandler.js';
 import Product from '../models/productModel.js';
 
 // @desc    Fetch all products
 // @route   GET /api/products
-//Public
+// @access  Public
 const getProducts = asyncHandler(async (req, res) => {
-  // const products = await Product.find({});
-
-  const pageSize = 4;
+  const pageSize = process.env.PAGINATION_LIMIT;
   const page = Number(req.query.pageNumber) || 1;
 
   const keyword = req.query.keyword
@@ -29,28 +27,17 @@ const getProducts = asyncHandler(async (req, res) => {
 
 // @desc    Fetch single product
 // @route   GET /api/products/:id
-// Public
+// @access  Public
 const getProductById = asyncHandler(async (req, res) => {
+  // NOTE: checking for valid ObjectId to prevent CastError moved to separate
+  // middleware. See README for more info.
+
   const product = await Product.findById(req.params.id);
-
   if (product) {
-    res.json(product);
+    return res.json(product);
   } else {
-    res.status(404);
-    throw new Error('Product not found');
-  }
-});
-
-// @desc    Delete a product
-// @route   DELETE /api/products/:id
-//  Private/Admin
-const deleteProduct = asyncHandler(async (req, res) => {
-  const product = await Product.findById(req.params.id);
-
-  if (product) {
-    await product.remove();
-    res.json({ message: 'Product removed' });
-  } else {
+    // NOTE: this will run if a valid ObjectId but no product was found
+    // i.e. product may be null
     res.status(404);
     throw new Error('Product not found');
   }
@@ -58,17 +45,18 @@ const deleteProduct = asyncHandler(async (req, res) => {
 
 // @desc    Create a product
 // @route   POST /api/products
-//   Private/Admin
+// @access  Private/Admin
 const createProduct = asyncHandler(async (req, res) => {
   const product = new Product({
     name: 'Sample name',
+    price: 0,
     user: req.user._id,
     image: '/images/sample.jpg',
-    description: 'Sample description',
     size: 'Sample size',
     category: 'Sample category',
-    price: 0,
     countInStock: 0,
+    numReviews: 0,
+    description: 'Sample description',
   });
 
   const createdProduct = await product.save();
@@ -77,7 +65,7 @@ const createProduct = asyncHandler(async (req, res) => {
 
 // @desc    Update a product
 // @route   PUT /api/products/:id
-//  Private/Admin
+// @access  Private/Admin
 const updateProduct = asyncHandler(async (req, res) => {
   const { name, price, description, image, size, category, countInStock } =
     req.body;
@@ -86,11 +74,11 @@ const updateProduct = asyncHandler(async (req, res) => {
 
   if (product) {
     product.name = name;
-    product.image = image;
+    product.price = price;
     product.description = description;
+    product.image = image;
     product.size = size;
     product.category = category;
-    product.price = price;
     product.countInStock = countInStock;
 
     const updatedProduct = await product.save();
@@ -101,9 +89,24 @@ const updateProduct = asyncHandler(async (req, res) => {
   }
 });
 
+// @desc    Delete a product
+// @route   DELETE /api/products/:id
+// @access  Private/Admin
+const deleteProduct = asyncHandler(async (req, res) => {
+  const product = await Product.findById(req.params.id);
+
+  if (product) {
+    await Product.deleteOne({ _id: product._id });
+    res.json({ message: 'Product removed' });
+  } else {
+    res.status(404);
+    throw new Error('Product not found');
+  }
+});
+
 // @desc    Create new review
 // @route   POST /api/products/:id/reviews
-// @  Private
+// @access  Private
 const createProductReview = asyncHandler(async (req, res) => {
   const { rating, comment } = req.body;
 
@@ -132,7 +135,7 @@ const createProductReview = asyncHandler(async (req, res) => {
 
     product.rating =
       product.reviews.reduce((acc, item) => item.rating + acc, 0) /
-      product.reviews.length; // update overall rating
+      product.reviews.length;
 
     await product.save();
     res.status(201).json({ message: 'Review added' });
@@ -144,9 +147,9 @@ const createProductReview = asyncHandler(async (req, res) => {
 
 // @desc    Get top rated products
 // @route   GET /api/products/top
-// @ Public
+// @access  Public
 const getTopProducts = asyncHandler(async (req, res) => {
-  const products = await Product.find({}).sort({ rating: -1 }).limit(3); // sort in ascending order
+  const products = await Product.find({}).sort({ rating: -1 }).limit(3);
 
   res.json(products);
 });
@@ -154,9 +157,9 @@ const getTopProducts = asyncHandler(async (req, res) => {
 export {
   getProducts,
   getProductById,
-  deleteProduct,
   createProduct,
   updateProduct,
+  deleteProduct,
   createProductReview,
   getTopProducts,
 };
