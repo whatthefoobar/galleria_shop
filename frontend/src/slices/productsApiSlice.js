@@ -1,6 +1,7 @@
 import { PRODUCTS_URL } from '../constants';
 import { apiSlice } from './apiSlice';
 
+//no axios equests to fetch product all done through redux toolkit
 export const productsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getProducts: builder.query({
@@ -61,6 +62,7 @@ export const productsApiSlice = apiSlice.injectEndpoints({
   }),
 });
 
+// export access to these fetch calls like hooks:  use...Query or use...Mutation
 export const {
   useGetProductsQuery,
   useGetProductDetailsQuery,

@@ -49,6 +49,7 @@ const ProductScreen = () => {
   const [createReview, { isLoading: loadingProductReview }] =
     useCreateReviewMutation();
 
+  //create a review
   const submitHandler = async (e) => {
     e.preventDefault();
 

@@ -16,6 +16,7 @@ const cartSlice = createSlice({
 
       const existItem = state.cartItems.find((x) => x._id === item._id);
 
+      //if we have prod X in cart and go to x and add it again it won't update quantity to 2 , you can only do that from the dropdown
       if (existItem) {
         state.cartItems = state.cartItems.map((x) =>
           x._id === existItem._id ? item : x

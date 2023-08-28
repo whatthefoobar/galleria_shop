@@ -1,7 +1,7 @@
 export const addDecimals = (num) => {
   return (Math.round(num * 100) / 100).toFixed(2);
 };
-
+// calculate the total price amount in your cart with tax price
 export const updateCart = (state) => {
   // Calculate the items price
   state.itemsPrice = addDecimals(
