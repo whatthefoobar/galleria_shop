@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom/client';
 import './assets/styles/index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -32,6 +32,7 @@ import UserEditScreen from './screens/admin/UserEditScreen';
 import store from './store';
 import { Provider } from 'react-redux';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
+import NotFoundScreen from './screens/NotFoundScreen';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -67,6 +68,8 @@ const router = createBrowserRouter(
         <Route path='/admin/product/:id/edit' element={<ProductEditScreen />} />
         <Route path='/admin/user/:id/edit' element={<UserEditScreen />} />
       </Route>
+      {/* Not found */}
+      <Route path='*' element={<NotFoundScreen />} />
     </Route>
   )
 );
@@ -83,5 +86,3 @@ root.render(
     </HelmetProvider>
   </React.StrictMode>
 );
-
-reportWebVitals();
