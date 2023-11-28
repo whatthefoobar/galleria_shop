@@ -39,8 +39,8 @@ const Header = () => {
             <Navbar.Brand>Galleria</Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
-          <Navbar.Collapse id='basic-navbar-nav'>
-            <Nav className='ms-auto'>
+          <Navbar.Collapse id='basic-navbar-nav '>
+            <Nav className='mt-3'>
               <SearchBox />
               <LinkContainer to='/cart'>
                 <Nav.Link>
