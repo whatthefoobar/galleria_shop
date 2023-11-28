@@ -40,7 +40,7 @@ const Header = () => {
           </LinkContainer>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav '>
-            <Nav className='mt-3'>
+            <Nav className='ms-auto '>
               <SearchBox />
               <LinkContainer to='/cart'>
                 <Nav.Link>
