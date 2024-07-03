@@ -1,14 +1,15 @@
-import React from 'react';
-import { LinkContainer } from 'react-router-bootstrap';
-import { Table, Button } from 'react-bootstrap';
-import { FaTrash, FaEdit, FaCheck, FaTimes } from 'react-icons/fa';
-import Message from '../../components/Message';
-import Loader from '../../components/Loader';
+import React from "react";
+
+import { Table, Button } from "react-bootstrap";
+import { FaTrash, FaEdit, FaCheck, FaTimes } from "react-icons/fa";
+import Message from "../../components/Message";
+import Loader from "../../components/Loader";
 import {
   useDeleteUserMutation,
   useGetUsersQuery,
-} from '../../slices/usersApiSlice';
-import { toast } from 'react-toastify';
+} from "../../slices/usersApiSlice";
+import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 const UserListScreen = () => {
   const { data: users, refetch, isLoading, error } = useGetUsersQuery();
@@ -16,7 +17,7 @@ const UserListScreen = () => {
   const [deleteUser] = useDeleteUserMutation();
 
   const deleteHandler = async (id) => {
-    if (window.confirm('Are you sure')) {
+    if (window.confirm("Are you sure")) {
       try {
         await deleteUser(id);
         refetch();
@@ -32,11 +33,11 @@ const UserListScreen = () => {
       {isLoading ? (
         <Loader />
       ) : error ? (
-        <Message variant='danger'>
+        <Message variant="danger">
           {error?.data?.message || error.error}
         </Message>
       ) : (
-        <Table striped bordered hover responsive className='table-sm'>
+        <Table striped bordered hover responsive className="table-sm">
           <thead>
             <tr>
               <th>ID</th>
@@ -56,28 +57,28 @@ const UserListScreen = () => {
                 </td>
                 <td>
                   {user.isAdmin ? (
-                    <FaCheck style={{ color: 'green' }} />
+                    <FaCheck style={{ color: "green" }} />
                   ) : (
-                    <FaTimes style={{ color: 'red' }} />
+                    <FaTimes style={{ color: "red" }} />
                   )}
                 </td>
                 <td>
                   {!user.isAdmin && (
                     <>
-                      <LinkContainer
+                      <Link
                         to={`/admin/user/${user._id}/edit`}
-                        style={{ marginRight: '10px' }}
+                        style={{ marginRight: "10px" }}
                       >
-                        <Button variant='light' className='btn-sm'>
+                        <Button variant="light" className="btn-sm">
                           <FaEdit />
                         </Button>
-                      </LinkContainer>
+                      </Link>
                       <Button
-                        variant='danger'
-                        className='btn-sm'
+                        variant="danger"
+                        className="btn-sm"
                         onClick={() => deleteHandler(user._id)}
                       >
-                        <FaTrash style={{ color: 'white' }} />
+                        <FaTrash style={{ color: "white" }} />
                       </Button>
                     </>
                   )}
